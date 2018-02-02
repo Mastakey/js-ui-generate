@@ -5,9 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>js-ui-generate</title>
+    <link href="main.css" rel="stylesheet">
     <script src="ui_to_json.js"></script>
 </head>
 <body>
-    <input type="" >
+    <h1>js-ui-generate</h1>
+    <div class="flex-container">
+        <div id="component_input" class="flex-item flex-small">
+            <h2>Input</h2>
+            <div>
+                <div>
+                    <label class="label" for="type">type:</label>
+                    <select id="type">
+                        <option></option>
+                        <option>select</option>
+                        <option>input</option>
+                        <option>button</option>
+                        <option>richtext</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="label" for="id">id:</label>
+                    <input id="id" type="text">
+                </div>
+                <div>
+                    <label class="label" for="class">Text:</label>
+                    <input id="text" type="text">
+                </div>
+                <div>
+                    <label class="label" for="class">class:</label>
+                    <input id="class" type="text">
+                </div>
+                <div>
+                    <input id="label" type="checkbox">Label
+                </div>
+                <div>
+                    <label class="label" for="label_name">name:</label>
+                    <input id="label_name" type="text">
+                </div>
+                <div>
+                    <label class="label" for="label_class">class:</label>
+                    <input id="label_class" type="text">
+                </div>
+            </div>
+            <div>
+                <button id="tojson">To JSON</button>
+            </div>
+        </div>
+        <div id="json" class="flex-item">
+            <h2>JSON</h2>
+            <textarea class="full" id="json_text"></textarea>
+            <div>
+                <button id="tohtml">To HTML</button>
+            </div>
+        </div>
+        <div id="html" class="flex-item">
+            <h2>HTML</h2>
+            <textarea class="full" id="html_text"></textarea>
+        </div>
+        <div id="css" class="flex-item">
+            <h2>CSS</h2>
+            <textarea class="full" id="css_text"></textarea>
+            <div>
+                <button id="applyCss">Apply CSS</button>
+            </div>
+        </div>
+    </div>
+    <div id="preview" class="flex-item">
+        <h2>Preview</h2>
+        <div id="preview_body"></div>
+    </div>
+    <script>
+        document.getElementById('tojson').addEventListener('click', function(){
+            var myjson = readInput();
+            var str = JSON.stringify(myjson, null, 4);
+            document.getElementById('json_text').value = str;
+        });
+        document.getElementById('tohtml').addEventListener('click', function(){
+            var mystr = document.getElementById('json_text').value;
+            var myjson = JSON.parse(mystr);
+            var myobj = toJSObj(myjson);
+            document.getElementById('html_text').value = myobj.innerHTML;
+            document.getElementById('preview_body').appendChild(myobj);
+        });
+        document.getElementById('applyCss').addEventListener('click', function(){
+            var mystr = document.getElementById('css_text').value;
+            addCss(mystr);
+        });
+    </script>
 </body>
 </html>

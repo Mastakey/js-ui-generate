@@ -1,0 +1,25 @@
+.flex-container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.flex-item {
+    margin: 10px;
+    margin-left: 0px;
+    padding: 10px;
+    border: 1px solid;
+    width: 300px;
+}
+
+.flex-small {
+    width: auto;
+}
+
+.label {
+    display: block;
+}
+
+.full {
+    width: 99%;
+    height: 65%;
+}
