@@ -1,5 +1,6 @@
 # js-ui-generate
 Generate reusable UI components (input, select, textarea) in HTML from JSON
+UI -> JSON -> JS Object -> HTML
 Purpose:
   To generate consistant UI components
   less code writing
